@@ -1,0 +1,39 @@
+syntax = "proto3";
+package service.inventorySystem;
+enum Status {
+  STATUS_TAKEN = 0;
+  STATUS_AVAILABLE = 1;
+}
+
+enum Genre {
+  GENRE_MYSTERY = 0;
+  GENRE_FICTION = 1;
+  GENRE_BIOGRAPHY = 2;
+  GENRE_NON_FICTION = 3;
+}
+
+message Book {
+  string isbn = 1;
+  string title = 2;
+  string author = 3;
+  Genre genre = 4;
+  int32 publishing_year = 5;
+}
+
+message inventorySystem {
+  string isbn = 1;
+  oneof book_oneOf {
+    Book book = 2;
+  }
+  optional Status status = 3;
+}
+message response {
+  bool success = 1;
+}
+message isbn {
+  string isbn = 1;
+}
+service Inventory{
+  rpc createBook(Book) returns (response);
+  rpc getBook(isbn) returns (Book);
+}
