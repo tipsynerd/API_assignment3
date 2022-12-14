@@ -3,7 +3,7 @@ from concurrent import futures
 import service.inventorySystem_pb2_grpc as pb_2_grpc
 import service.inventorySystem_pb2 as pb_2
 
-books = [
+inventory = [
 
     pb_2.inventorySystem(
         isbn="1001",
@@ -32,7 +32,7 @@ books = [
 
 class InventoryServicer(pb_2_grpc.InventoryServicer):
     def createBook(self, request, context):
-        print(request)
+        print("Create Book Called")
         isbn = request.isbn
         title = request.title
         author = request.author
@@ -53,18 +53,19 @@ class InventoryServicer(pb_2_grpc.InventoryServicer):
         ),
         status=pb_2.STATUS_AVAILABLE,
         )
-        books.append(invObj)
-
+        inventory.append(invObj)
+        print("New Book created")
+        print(invObj)
         return pb_2.response(success=True)
 
     def getBook(self, request, context):
-        for book in books:
+        print("GetBook called")
+        for book in inventory:
             # print(book.isbn)
             # print(request.isbn)
             if book.isbn == request.isbn:
-                print(request.isbn)
+                print("ISBN requested: " + request.isbn)
                 print(book)
-
                 return book.book
         return pb_2.Book()
 

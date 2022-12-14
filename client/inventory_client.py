@@ -23,3 +23,13 @@ class InventoryClient(object):
         isbnObj = pb_2.isbn(isbn=isbn)
         result = self.stub.getBook(isbnObj)
         return result
+
+    def createBook(self, isbn, title, author, genre, publishing_year):
+        result = self.stub.createBook(pb_2.Book(
+            isbn=isbn,
+            title=title,
+            author=author,
+            genre=genre,
+            publishing_year=publishing_year
+        ))
+        return result
