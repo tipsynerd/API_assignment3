@@ -4,26 +4,6 @@ import get_book_titles
 
 import service.inventorySystem_pb2 as pb_2
 from inventory_client import InventoryClient
-# # clientMock.getBook = MagicMock("1001", "1002", return_value=pb_2.Book(isbn="1001",
-# #                                                                       title="Ivanhoe",
-# #                                                                       author="Kiu Huiy",
-# #                                                                       genre=pb_2.GENRE_FICTION,
-# #                                                                       publishing_year=1998))
-# clientMock.getBook = MagicMock(return_value=pb_2.Book(
-#     isbn="1001",
-#     title="Ivanhoe",
-#     author="Kiu Huiy",
-#     genre=pb_2.GENRE_FICTION,
-#     publishing_year=1998)
-# ))
-# clientMock.getBook.return_value = pb_2.Book(
-#     isbn="1001",
-#     title="Ivanhoe",
-#     author="Kiu Huiy",
-#     genre=pb_2.GENRE_FICTION,
-#     publishing_year=1998)
-# )
-# clientMock.createBook = MagicMock("1001", return_value=True)
 
 
 class TestGrpcApi(unittest.TestCase):
